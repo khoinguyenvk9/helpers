@@ -7,7 +7,7 @@ Some functions that support projects, validate, and js functions are written in 
 ```
 // In Terminal
 
-git clone...
+git clone https://github.com/khoinguyenvk9/helpers.git
 ```
 
 ## Download a single folder or directory from a GitHub repo
