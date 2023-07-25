@@ -1,6 +1,6 @@
 # helpers
 
-Some functions that support projects, validate, and js functions are written in typescript
+Some functions that support projects, validate, and js functions are written in typescript. [See more documents and example](https://dylan.vecel-app)
 
 ## Download for your project
 
