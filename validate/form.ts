@@ -29,6 +29,29 @@ export const validateUrl = async (url: string): Promise<boolean> => {
   }
 };
 
-export const validatePhoneS = () => {
-  return null;
+export const nonAccentVietnameseName = (name: string, removeNumber = true) => {
+  if (removeNumber) {
+    name = name.replace(/[0-9]/g, "");
+  }
+  name = name
+    ?.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+  name = name?.toUpperCase();
+  return name;
+};
+
+export const delaySearch = (
+  timeoutRef: any,
+  action: Function,
+  delayTime: number,
+  value?: any
+) => {
+  if (timeoutRef.current) {
+    clearTimeout(timeoutRef.current);
+  }
+  timeoutRef.current = setTimeout(() => {
+    action(value);
+  }, delayTime);
 };
