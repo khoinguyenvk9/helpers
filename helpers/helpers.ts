@@ -1,4 +1,4 @@
-import { get } from "../functions/object";
+import { get } from "../fns/object";
 
 // nonAccentVietnameseName
 // Khôi nguyễn --> khoi nguyen
@@ -28,4 +28,18 @@ export const displayName = (
   return (
     get(name, locale) || get(name, "en") || get(name, "vi") || defaultValue
   );
+};
+
+export const delaySearch = (
+  timeoutRef: any,
+  action: Function,
+  delayTime: number,
+  value?: any
+) => {
+  if (timeoutRef.current) {
+    clearTimeout(timeoutRef.current);
+  }
+  timeoutRef.current = setTimeout(() => {
+    action(value);
+  }, delayTime);
 };
