@@ -47,3 +47,12 @@ export function arrayIntersect<T>(arr1: T[], arr2: T[]) {
     return arr2.includes(item);
   });
 }
+
+export function getIntersectionByProperty<T>(
+  arr1: T[],
+  arr2: T[],
+  property: keyof T,
+): T[] {
+  const set1 = new Set(arr1.map((item) => item[property]));
+  return arr2.filter((item) => set1.has(item[property]));
+}
