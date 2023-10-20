@@ -1,3 +1,4 @@
+import { isEmpty } from "./object";
 export function groupBy(arr: any, cb: Function) {
   if (!Array.isArray(arr)) {
     throw new Error("expected an array for first argument");
@@ -25,7 +26,7 @@ export function groupBy(arr: any, cb: Function) {
 
 export const groupByKey = <T, K>(
   collection: T[],
-  iteratee: (item: T) => K
+  iteratee: (item: T) => K,
 ): Record<string, T[]> => {
   return collection.reduce((result: Record<string, T[]>, item: T) => {
     const key = String(iteratee(item));
@@ -54,11 +55,14 @@ type Iteratee<T> = (item: T) => Key;
 
 export const keyBy = <T>(
   array: T[],
-  iteratee: keyof T | Iteratee<T>
+  iteratee: keyof T | Iteratee<T>,
 ): { [k in Key]: T } =>
-  array.reduce((result, item) => {
-    const keyValue =
-      typeof iteratee === "function" ? iteratee(item) : item[iteratee];
-    result[keyValue as string] = item;
-    return result;
-  }, {} as { [k in Key]: T });
+  array.reduce(
+    (result, item) => {
+      const keyValue =
+        typeof iteratee === "function" ? iteratee(item) : item[iteratee];
+      result[keyValue as string] = item;
+      return result;
+    },
+    {} as { [k in Key]: T },
+  );
